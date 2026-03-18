@@ -16,7 +16,19 @@ function createGrid(size) {
   }
 }
 
-createGrid(16);
+function getRandomRgbColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+container.addEventListener('mouseover', (e) => {
+  if (e.target.classList.contains('square')) {
+    e.target.style.backgroundColor = getRandomRgbColor();
+  }
+});
 
 const resizeButton = document.querySelector('#resize')
 
@@ -34,3 +46,5 @@ resizeButton.addEventListener('click', () => {
 
   createGrid(size);
 });
+
+createGrid(16);
