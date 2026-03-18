@@ -1,4 +1,4 @@
-const GRID_SIDE_LENGTH = 960;
+const GRID_SIDE_LENGTH_PERCENT = 100;
 const container = document.querySelector('#container');
 
 function createGrid(size) {
@@ -9,8 +9,8 @@ function createGrid(size) {
 
     square.classList.add("square");
 
-    square.style.width = `${GRID_SIDE_LENGTH / size}px`;
-    square.style.height = `${GRID_SIDE_LENGTH / size}px`;
+    square.style.width = `${GRID_SIDE_LENGTH_PERCENT / size}%`;
+    square.style.height = `${GRID_SIDE_LENGTH_PERCENT / size}%`;
 
     container.appendChild(square);
   }

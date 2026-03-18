@@ -11,8 +11,10 @@ body {
 }
 
 #container {
-  width: 960px;
-  height: 960px;
+  width: 90vmin;
+  height: 90vmin;
+  max-width: 960px;
+  max-height: 960px;
   display: flex;
   flex-wrap: wrap;
 }
