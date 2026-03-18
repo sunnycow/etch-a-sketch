@@ -17,9 +17,9 @@ body {
   max-height: 960px;
   display: flex;
   flex-wrap: wrap;
+  border: 1px solid;
 }
 
 .square {
   box-sizing: border-box;
-  border: 1px solid;
 }

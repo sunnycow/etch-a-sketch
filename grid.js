@@ -1,4 +1,5 @@
 const GRID_SIDE_LENGTH_PERCENT = 100;
+const OPACITY_STEP = 0.1;
 const container = document.querySelector('#container');
 
 function createGrid(size) {
@@ -8,6 +9,10 @@ function createGrid(size) {
     const square = document.createElement("div");
 
     square.classList.add("square");
+    square.dataset.opacity = 0;
+    const color = getRandomRgbColor();
+    square.dataset.color = color;
+    square.style.backgroundColor = `rgba(${color}, 0)`;
 
     square.style.width = `${GRID_SIDE_LENGTH_PERCENT / size}%`;
     square.style.height = `${GRID_SIDE_LENGTH_PERCENT / size}%`;
@@ -21,12 +26,19 @@ function getRandomRgbColor() {
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
 
-  return `rgb(${r}, ${g}, ${b})`;
+  return `${r}, ${g}, ${b}`;
 }
 
 container.addEventListener('mouseover', (e) => {
   if (e.target.classList.contains('square')) {
-    e.target.style.backgroundColor = getRandomRgbColor();
+    let opacity = Number(e.target.dataset.opacity);
+    let color = e.target.dataset.color;
+
+    if (opacity < 1) {
+      opacity += OPACITY_STEP;
+      e.target.style.backgroundColor = `rgba(${color}, ${opacity})`;
+      e.target.dataset.opacity = opacity;
+    }
   }
 });
 
@@ -53,7 +65,10 @@ resetButton.addEventListener('click', () => {
   const squares = container.querySelectorAll('.square');
 
   squares.forEach((square) => {
-    square.style.backgroundColor = '';
+    const color = getRandomRgbColor();
+    square.dataset.color = color;
+    square.dataset.opacity = 0;
+    square.style.backgroundColor = `rgba(${color}, 0)`;
   });
 });
 
